@@ -39,6 +39,7 @@ Built using Splunk Enterprise to ingest, detect, and alert on Windows and Linux 
 
 ## Dashboard
 SOC Monitoring Dashboard with 7 panels covering all detection categories.
+[View SOC Dashboard PDF](screenshots/soc-dashboard.pdf)
 
 ## Tools Used
 - Splunk Enterprise 10.2
