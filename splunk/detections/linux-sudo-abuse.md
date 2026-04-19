@@ -1,17 +1,20 @@
 # Linux Sudo Abuse
 
-## SPL Query
-```
-index=main sourcetype="syslog" host="192.168.0.24" "sudo"
-```
+Attackers abuse sudo to run commands as root, potentially accessing 
+sensitive files like /etc/shadow or installing backdoors.
 
-## What it detects
-Any sudo usage on Linux host — useful for tracking privilege use.
+**MITRE ATT&CK:** T1548.003 — Abuse Elevation Control Mechanism: Sudo and Sudo Caching
+
+## SPL Query
+index=main sourcetype="syslog" host="192.168.0.24" "sudo"
 
 ## Severity
 Medium
 
 ## Response
 - Review command run with sudo
-- Check if user is authorized to use sudo
-- Investigate if sensitive files accessed (e.g. /etc/shadow)
+- Check if user is authorized
+- Investigate if sensitive files were accessed
+
+## Screenshot
+![Linux Sudo](/screenshots/linuxsudo.png)
