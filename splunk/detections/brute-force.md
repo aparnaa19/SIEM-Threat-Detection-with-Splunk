@@ -22,4 +22,4 @@ Medium
 - Block the source if external
 
 ## Screenshot
-![Brute Force](../screenshots/bruteforce.png)
+![Brute Force](/screenshots/bruteforce.png)
