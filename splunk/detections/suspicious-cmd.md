@@ -1,11 +1,13 @@
-# Suspicious CMD Detection
-## SPL Query
-index=main sourcetype="xmlwineventlog" EventCode=1 Image="cmd.exe"
-| stats count by CommandLine
+# Suspicious CMD Process Creation
 
-## What it detects
-CMD.exe spawning recon commands like whoami, ipconfig, net user — 
-commonly used by attackers after initial access to enumerate the system.
+Attackers use CMD to run recon commands like whoami and ipconfig 
+after gaining access to map the environment.
+
+**MITRE ATT&CK:** T1059.003 — Command and Scripting Interpreter: Windows Command Shell
+
+## SPL Query
+index=main sourcetype="xmlwineventlog" EventCode=1 Image="*cmd.exe*"
+| stats count by CommandLine
 
 ## Event ID
 Sysmon Event ID 1 — Process Creation
@@ -13,15 +15,10 @@ Sysmon Event ID 1 — Process Creation
 ## Severity
 Medium
 
-## Simulated With
-```powershell
-cmd.exe /c whoami
-cmd.exe /c ipconfig
-cmd.exe /c net user
-```
-
 ## Response
-- Review CommandLine field for suspicious commands
-- Check parent process — was cmd spawned by Office, browser, or script?
-- Correlate with other alerts in the same timeframe
-- If part of a chain (PowerShell → CMD → net user), escalate immediately
+- Review CommandLine for suspicious commands
+- Check parent process
+- Correlate with other alerts in same timeframe
+
+## Screenshot
+![Suspicious CMD](/screenshots/suscmd.png)
