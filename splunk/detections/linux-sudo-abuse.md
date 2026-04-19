@@ -17,4 +17,4 @@ Medium
 - Investigate if sensitive files were accessed
 
 ## Screenshot
-![Linux Sudo](/screenshots/linuxsudo.png)
+![Linux Sudo](/screenshots/inuxsudo.png)
