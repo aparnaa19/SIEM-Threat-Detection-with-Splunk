@@ -1,25 +1,21 @@
-# Suspicious PowerShell Detection
+# Linux Failed Authentication
 
-Attackers use encoded or hidden PowerShell commands to download malware, 
-run scripts, and evade detection.
+Repeated failed login attempts on Linux via su or SSH indicating 
+brute force or unauthorized access attempts.
 
-**MITRE ATT&CK:** T1059.001 — Command and Scripting Interpreter: PowerShell
+**MITRE ATT&CK:** T1110 — Brute Force
 
 ## SPL Query
-index=main sourcetype="xmlwineventlog" EventCode=1
-CommandLine="*hidden*" OR CommandLine="*EncodedCommand*"
-
-## Event ID
-Sysmon Event ID 1 — Process Creation
+index=main sourcetype="syslog" host="192.168.0.24"
+("failed" OR "authentication failure")
 
 ## Severity
 High
 
 ## Response
-- Review full CommandLine
-- Decode base64 if EncodedCommand used
-- Check parent process
-- Isolate host if malicious payload confirmed
+- Check frequency of failures
+- Identify source user
+- Review /var/log/auth.log for full context
 
 ## Screenshot
-![Suspicious PowerShell](/screenshots/suspowershell.png)
+![Linux Failed Auth](/screenshots/linuxfailed.png)
